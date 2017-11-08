@@ -902,7 +902,8 @@
     <PackageReference Include="System.Reactive.Core" Version="3.1.1" />
  
     <PackageReference Include="Unofficial.ObjectListView" version="2.6.0" targetFramework="net40" />
-    <PackageReference Include="Xamarin.Forms" version="2.3.4.247" targetFramework="net462" />
+    <PackageReference Include="Xamarin.Forms" version="3.0.0.201-gtk" targetFramework="net462" />
+    <PackageReference Include="Xamarin.Forms.Pages" Version="3.0.0.100-embeddingpreview" />
     <PackageReference Include="zlib.net" version="1.0.4.0" targetFramework="net40" />
   </ItemGroup>
 
@@ -957,6 +958,9 @@
     </Compile>
     <Compile Update="Log\LogDownloadscp.Designer.cs">
       <DependentUpon>LogDownloadscp.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Main.xaml.cs">
+      <SubType>Code</SubType>
     </Compile>
  
     <Compile Update="Strings.cs">
