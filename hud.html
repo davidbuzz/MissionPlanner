@@ -12,6 +12,7 @@
         var yaw = 200;
 
         var markers = [];
+		var wpmarkers = [];
 		var flightPath;
 		var pathHistoryPoly;
 		var pathHistory = [];
@@ -37,9 +38,29 @@
 			var wpscoords = [];
 			for (i in MAV.wps) 
 			{
-				if (MAV.wps[i].x != 0 && MAV.wps[i].y != 0)
-					wpscoords.push({lat: MAV.wps[i].x, lng: MAV.wps[i].y });
+				if (MAV.wps[i].x != 0 && MAV.wps[i].y != 0) 
+				{
+					wpscoords.push({lat: MAV.wps[i].x, lng: MAV.wps[i].y, label: MAV.wps[i].seq });
+				}
 			}
+			
+			i=0;
+			wpmarkers.forEach(function(element) 
+			{
+				element.setPosition(wpscoords[i]);
+				i++;
+			});
+			
+			    // Create markers.
+        wpscoords.forEach(function(feature) {
+          var marker = new google.maps.Marker({
+            position: feature,
+            icon: 'https://maps.gstatic.com/mapfiles/ms2/micons/green.png',
+            map: map,
+			label: (feature.label == 0) ? "Home" : feature.label+""
+          });
+		  wpmarkers.push(marker);
+        });
 			
 			if(flightPath == null) {			
 			flightPath = new google.maps.Polyline({
@@ -47,7 +68,7 @@
 			  geodesic: true,
 			  strokeColor: '#FFFF00',
 			  strokeOpacity: 1.0,
-			  strokeWeight: 2
+			  strokeWeight: 4
 			});			
 
 			flightPath.setMap(map);
@@ -89,7 +110,8 @@ var sortable = [];
 			
             document.getElementById("serverStatus").innerHTML = status;
 
-            //map.setCenter({lat: cs.lat, lng: cs.lng});
+            map.setCenter({lat: cs.lat, lng: cs.lng});
+			map.setZoom(18);
 
             roll = cs.roll;
             pitch = cs.pitch;
@@ -98,6 +120,30 @@ var sortable = [];
             lat = cs.lat;
             lng = cs.lng;
             alt = cs.alt;
+			
+			try {
+
+        var myLatLng = {lat: lat, lng: lng};
+
+    if(markers.length > 0) 
+	{
+		markers[0].setPosition(myLatLng);
+	} else {
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'ArduPilot',
+			label: MAV.sysid+''
+       });
+
+		markers.push(marker);
+	}
+
+    map.setOptions({maxZoom: 21});
+
+          //socket.send("test "+pitch+"\n");
+          } catch (ex){ }// alert(ex); }
+
 			
 			pathHistory.push({lat: lat, lng: lng});
 			
@@ -110,7 +156,7 @@ var sortable = [];
 			  geodesic: true,
 			  strokeColor: '#191970',
 			  strokeOpacity: 0.56,
-			  strokeWeight: 2
+			  strokeWeight: 4
 			});			
 
 			pathHistoryPoly.setMap(map);
@@ -258,31 +304,6 @@ var sortable = [];
     //DrawLine(ctx,"GREEN",4,-halfwidth,0,halfwidth,0);
 
           }
-
-          try {
-
-        var myLatLng = {lat: lat, lng: lng};
-
-    if(markers.length > 0) 
-	{
-		markers[0].setPosition(myLatLng);
-	} else {
-        var marker = new google.maps.Marker({
-            position: myLatLng,
-            map: map,
-            title: 'ArduPilot'
-       });
-
-		markers.push(marker);
-	}
-
-    map.setOptions({maxZoom: 21});
-
-          //socket.send("test "+pitch+"\n");
-          } catch (ex){ }// alert(ex); }
-
-
-
 
         }
         function DrawEllipse(ctx,color,linewidth,x1,y1,width,height) {
