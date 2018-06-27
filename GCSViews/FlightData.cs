@@ -3651,6 +3651,89 @@ namespace MissionPlanner.GCSViews
         {
         }
 
+
+        private void modifyandSetSlewHeading_Click(object sender, EventArgs e)
+        {
+            var degrees = modifyandSetSlewHeading.Value;
+            var degs_per_second_rate  = modifyandSetSlewHeadingRate.Value;
+            //CustomMessageBox.Show("Slew Heading not imple yet TODO: " + degrees.ToString());
+            try
+            {
+                // Track type (0: Ground Track, 1: Heading)
+                var HEADING_TYPE_GROUND = 0;
+                var HEADING_TYPE_AIR = 1;
+
+                // mavlink_command_long_t , see MAV_CMD_GUIDED_CHANGE_HEADING
+                MainV2.comPort.doCommand(MAVLink.MAV_CMD.MAV_CMD_GUIDED_CHANGE_HEADING,
+                        HEADING_TYPE_GROUND,
+                        (float) degrees,
+                        (float) degs_per_second_rate, 
+                        0, 
+                        0,
+                        0, 
+                        0
+                        );
+                }
+                catch
+                {
+                    CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+                }
+        }
+        private void modifyandSetSlewAlt_Click(object sender, EventArgs e)
+        {
+            //CustomMessageBox.Show("Slew Alt not imple yet TODO: " + x.ToString());
+            var alt = modifyandSetSlewAlt.Value;
+            var meters_per_second_rate = modifyandSetSlewAltRate.Value;
+            try
+            {
+                // var HEADING_TYPE_GROUND = 0;
+                // var HEADING_TYPE_AIR = 1;
+
+                // mavlink_command_long_t , see MAV_CMD_GUIDED_CHANGE_ALTITUDE
+                MainV2.comPort.doCommand(MAVLink.MAV_CMD.MAV_CMD_GUIDED_CHANGE_ALTITUDE,
+                        0,
+                        0,
+                        (float)meters_per_second_rate,
+                        0,
+                        0,
+                        0,
+                        (float)alt
+                        );
+            }
+            catch
+            {
+                CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+            }
+        }
+        private void modifyandSetSlewSpeed_Click(object sender, EventArgs e)
+        {
+            //CustomMessageBox.Show("Slew Speed not imple yet TODO: " + x.ToString());
+            var speed = modifyandSetSlewSpeed.Value;
+            var meters_per_second_rate = modifyandSetSlewSpeedRate.Value;
+            try
+            {
+                //Type(0: Airspeed, 1: Groundspeed)
+                var SPEED_TYPE_AIR = 0;
+                var SPEED_TYPE_GROUND = 1;
+
+                // mavlink_command_long_t , see MAV_CMD_GUIDED_CHANGE_SPEED
+                MainV2.comPort.doCommand(MAVLink.MAV_CMD.MAV_CMD_GUIDED_CHANGE_SPEED,
+                        SPEED_TYPE_GROUND,
+                        (float)speed,
+                        (float)meters_per_second_rate,
+                        0,
+                        0,
+                        0,
+                        0
+                        );
+            }
+            catch
+            {
+                CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+            }
+        }
+
+
         private void triggerCameraToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -4648,6 +4731,26 @@ namespace MissionPlanner.GCSViews
             trackBarYaw.Value = 0;
             MainV2.comPort.setMountConfigure(MAVLink.MAV_MOUNT_MODE.MAVLINK_TARGETING, false, false, false);
             MainV2.comPort.setMountControl((float)trackBarPitch.Value * 100.0f, (float)trackBarRoll.Value * 100.0f, (float)trackBarYaw.Value * 100.0f, false);
+        }
+
+        private void quickView1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void modifyandSetSlewHeading_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void modifyandSetSlewAlt_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void modifyandSetSlewSpeed_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
