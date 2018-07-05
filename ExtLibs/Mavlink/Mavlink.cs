@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 public partial class MAVLink
 {
-    public const string MAVLINK_BUILD_DATE = "Wed Jul 04 2018";
+    public const string MAVLINK_BUILD_DATE = "Thu Jul 05 2018";
     public const string MAVLINK_WIRE_PROTOCOL_VERSION = "2.0";
     public const int MAVLINK_MAX_PAYLOAD_LEN = 255;
 
@@ -536,6 +536,26 @@ ICAROUS_KINEMATIC_BANDS = 42001,
     
     };
     
+    ///<summary>  </summary>
+    public enum HEADING_TYPE: int /*default*/
+    {
+			///<summary>  | </summary>
+        COURSE_OVER_GROUND=0, 
+    	///<summary>  | </summary>
+        HEADING=1, 
+    
+    };
+    
+    ///<summary>  </summary>
+    public enum SPEED_TYPE: int /*default*/
+    {
+			///<summary>  | </summary>
+        AIRSPEED=0, 
+    	///<summary>  | </summary>
+        GROUNDSPEED=1, 
+    
+    };
+    
     ///<summary> Commands to be executed by the MAV. They can be executed on user request, or as part of a mission script. If the action is used in a mission, the parameter mapping to the waypoint/mission message is as follows: Param 1, Param 2, Param 3, Param 4, X: Param 5, Y:Param 6, Z:Param 7. This command list is similar what ARINC 424 is for commercial aircraft: A data format how to interpret waypoint/mission data. </summary>
     public enum MAV_CMD: ushort
     {
@@ -843,6 +863,13 @@ ICAROUS_KINEMATIC_BANDS = 42001,
         // Change to target heading at a given slew rate, rather than location flight mode 
         MAV_CMD_GUIDED_CHANGE_HEADING = 43002,
 
+    	///<summary> Change flight speed (affects guided only) |Type (see SPEED_TYPE enum)| Target Speed (m/s)| Acceleration rate (m/s/s), 0 to take effect instantly| Empty| Empty| Empty| Empty|  </summary>
+        GUIDED_CHANGE_SPEED=43000, 
+    	///<summary> Change target altitude |Empty| Empty| Rate of change (m/s), 0 for maximum rate change| Empty| Empty| Empty| Altitude (m)|  </summary>
+        GUIDED_CHANGE_ALTITUDE=43001, 
+    	///<summary> Change to target heading, rather then location flight mode |Track type (see HEADING_TYPE enum)| Target heading (degrees)| Maximum centripetal accelearation (m/s/s)| Empty| Empty| Empty| Empty|  </summary>
+        GUIDED_CHANGE_HEADING=43002, 
+    
     };
     
     ///<summary>  </summary>
