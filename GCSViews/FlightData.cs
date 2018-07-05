@@ -3660,12 +3660,15 @@ namespace MissionPlanner.GCSViews
             try
             {
                 // Track type (0: Ground Track, 1: Heading)
-                var HEADING_TYPE_GROUND = 0;
-                var HEADING_TYPE_AIR = 1;
+                //var HEADING_TYPE_GROUND = 0;
+                //var HEADING_TYPE_AIR = 1;
 
-                // mavlink_command_long_t , see MAV_CMD_GUIDED_CHANGE_HEADING
-                MainV2.comPort.doCommand(MAVLink.MAV_CMD.MAV_CMD_GUIDED_CHANGE_HEADING,
-                        HEADING_TYPE_GROUND,
+                // mavlink_command_int_t , see MAV_CMD_GUIDED_CHANGE_HEADING
+                MainV2.comPort.doCommandInt(
+                        MAVLink.MAV_FRAME.GLOBAL_RELATIVE_ALT_INT,  //TODO verify this is correct 
+                        MAVLink.MAV_CMD.GUIDED_CHANGE_HEADING,
+
+                        (float)MAVLink.HEADING_TYPE.COURSE_OVER_GROUND, //TODO verify this is correct
                         (float) degrees,
                         (float) degs_per_second_rate, 
                         0, 
@@ -3686,11 +3689,12 @@ namespace MissionPlanner.GCSViews
             var meters_per_second_rate = modifyandSetSlewAltRate.Value;
             try
             {
-                // var HEADING_TYPE_GROUND = 0;
-                // var HEADING_TYPE_AIR = 1;
 
-                // mavlink_command_long_t , see MAV_CMD_GUIDED_CHANGE_ALTITUDE
-                MainV2.comPort.doCommand(MAVLink.MAV_CMD.MAV_CMD_GUIDED_CHANGE_ALTITUDE,
+                // mavlink_command_int_t , see MAV_CMD_GUIDED_CHANGE_ALTITUDE
+                MainV2.comPort.doCommandInt(
+                        MAVLink.MAV_FRAME.GLOBAL_RELATIVE_ALT_INT,  //TODO verify this is correct 
+                        MAVLink.MAV_CMD.GUIDED_CHANGE_ALTITUDE,
+
                         0,
                         0,
                         (float)meters_per_second_rate,
@@ -3713,12 +3717,15 @@ namespace MissionPlanner.GCSViews
             try
             {
                 //Type(0: Airspeed, 1: Groundspeed)
-                var SPEED_TYPE_AIR = 0;
-                var SPEED_TYPE_GROUND = 1;
+                //var SPEED_TYPE_AIR = 0;
+                //var SPEED_TYPE_GROUND = 1;
 
-                // mavlink_command_long_t , see MAV_CMD_GUIDED_CHANGE_SPEED
-                MainV2.comPort.doCommand(MAVLink.MAV_CMD.MAV_CMD_GUIDED_CHANGE_SPEED,
-                        SPEED_TYPE_GROUND,
+                // mavlink_command_int_t , see MAV_CMD_GUIDED_CHANGE_SPEED
+                MainV2.comPort.doCommandInt(
+                        MAVLink.MAV_FRAME.GLOBAL_RELATIVE_ALT_INT,  //TODO verify this is correct 
+                        MAVLink.MAV_CMD.GUIDED_CHANGE_SPEED,
+
+                        (float)MAVLink.SPEED_TYPE.AIRSPEED, //TODO verify this is correct
                         (float)speed,
                         (float)meters_per_second_rate,
                         0,
