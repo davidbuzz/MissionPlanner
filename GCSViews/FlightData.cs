@@ -3659,16 +3659,19 @@ namespace MissionPlanner.GCSViews
             //CustomMessageBox.Show("Slew Heading not imple yet TODO: " + degrees.ToString());
             try
             {
-                // Track type (0: Ground Track, 1: Heading)
-                //var HEADING_TYPE_GROUND = 0;
-                //var HEADING_TYPE_AIR = 1;
+
+                // default to raw heading ( which is blown around by wind), then use checkbox to set it to ground-truthed heading ( holds heading over ground in wind).
+                MAVLink.HEADING_TYPE heading_type = MAVLink.HEADING_TYPE.HEADING;
+                if ( this.GroundHeading.Checked == true ) {
+                    heading_type = MAVLink.HEADING_TYPE.COURSE_OVER_GROUND;
+                }
 
                 // mavlink_command_int_t , see MAV_CMD_GUIDED_CHANGE_HEADING
                 MainV2.comPort.doCommandInt(
-                        MAVLink.MAV_FRAME.GLOBAL_RELATIVE_ALT_INT,  //TODO verify this is correct 
+                        MAVLink.MAV_FRAME.GLOBAL_RELATIVE_ALT,  //
                         MAVLink.MAV_CMD.GUIDED_CHANGE_HEADING,
 
-                        (float)MAVLink.HEADING_TYPE.COURSE_OVER_GROUND, //TODO verify this is correct
+                        (float)heading_type,
                         (float) degrees,
                         (float) degs_per_second_rate, 
                         0, 
@@ -3692,7 +3695,7 @@ namespace MissionPlanner.GCSViews
 
                 // mavlink_command_int_t , see MAV_CMD_GUIDED_CHANGE_ALTITUDE
                 MainV2.comPort.doCommandInt(
-                        MAVLink.MAV_FRAME.GLOBAL_RELATIVE_ALT_INT,  //TODO verify this is correct 
+                        MAVLink.MAV_FRAME.GLOBAL_RELATIVE_ALT,  //
                         MAVLink.MAV_CMD.GUIDED_CHANGE_ALTITUDE,
 
                         0,
@@ -3716,16 +3719,13 @@ namespace MissionPlanner.GCSViews
             var meters_per_second_rate = modifyandSetSlewSpeedRate.Value;
             try
             {
-                //Type(0: Airspeed, 1: Groundspeed)
-                //var SPEED_TYPE_AIR = 0;
-                //var SPEED_TYPE_GROUND = 1;
 
                 // mavlink_command_int_t , see MAV_CMD_GUIDED_CHANGE_SPEED
                 MainV2.comPort.doCommandInt(
-                        MAVLink.MAV_FRAME.GLOBAL_RELATIVE_ALT_INT,  //TODO verify this is correct 
+                        MAVLink.MAV_FRAME.GLOBAL_RELATIVE_ALT,  // 
                         MAVLink.MAV_CMD.GUIDED_CHANGE_SPEED,
 
-                        (float)MAVLink.SPEED_TYPE.AIRSPEED, //TODO verify this is correct
+                        (float)MAVLink.SPEED_TYPE.AIRSPEED, //
                         (float)speed,
                         (float)meters_per_second_rate,
                         0,

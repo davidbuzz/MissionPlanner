@@ -1677,6 +1677,7 @@ Please check the following
             req.target_system = MAV.sysid;
             req.target_component = MAV.compid;
 
+            req.frame = (byte)frame;
             req.command = (ushort)actionid;
 
             req.current = 0; // TODO check if 0 or 1 needed

@@ -854,7 +854,7 @@ ICAROUS_KINEMATIC_BANDS = 42001,
     	///<summary> Update the bootloader |Empty| Empty| Empty| Empty| Magic number - set to 290876 to actually flash| Empty| Empty|  </summary>
         FLASH_BOOTLOADER=42650, 
     
-        DO_WINCH=42600,
+        //DO_WINCH=42600,
 
         // Change flight speed at a given slew rate (affects guided only)
         MAV_CMD_GUIDED_CHANGE_SPEED = 43000,
