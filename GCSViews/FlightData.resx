@@ -528,6 +528,90 @@
   <data name="&gt;&gt;tabQuick.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="modifyandSetBreakDelay.Location" type="System.Drawing.Point, System.Drawing">
+    <value>106, 157</value>
+  </data>
+  <data name="modifyandSetBreakDelay.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="modifyandSetBreakDelay.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 28</value>
+  </data>
+  <data name="modifyandSetBreakDelay.TabIndex" type="System.Int32, mscorlib">
+    <value>98</value>
+  </data>
+  <data name="modifyandSetBreakDelay.ToolTip" xml:space="preserve">
+    <value>how many seconds between Loiter and RTL requests?</value>
+  </data>
+  <data name="&gt;&gt;modifyandSetBreakDelay.Name" xml:space="preserve">
+    <value>modifyandSetBreakDelay</value>
+  </data>
+  <data name="&gt;&gt;modifyandSetBreakDelay.Type" xml:space="preserve">
+    <value>MissionPlanner.Controls.ModifyandSet, MissionPlanner, Version=1.3.58.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;modifyandSetBreakDelay.Parent" xml:space="preserve">
+    <value>tabActions</value>
+  </data>
+  <data name="&gt;&gt;modifyandSetBreakDelay.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="modifyandSetBreakRadius.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 157</value>
+  </data>
+  <data name="modifyandSetBreakRadius.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="modifyandSetBreakRadius.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 28</value>
+  </data>
+  <data name="modifyandSetBreakRadius.TabIndex" type="System.Int32, mscorlib">
+    <value>97</value>
+  </data>
+  <data name="modifyandSetBreakRadius.ToolTip" xml:space="preserve">
+    <value>negative numbers cause a turn to the LEFT, positive to the RIGHT</value>
+  </data>
+  <data name="&gt;&gt;modifyandSetBreakRadius.Name" xml:space="preserve">
+    <value>modifyandSetBreakRadius</value>
+  </data>
+  <data name="&gt;&gt;modifyandSetBreakRadius.Type" xml:space="preserve">
+    <value>MissionPlanner.Controls.ModifyandSet, MissionPlanner, Version=1.3.58.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;modifyandSetBreakRadius.Parent" xml:space="preserve">
+    <value>tabActions</value>
+  </data>
+  <data name="&gt;&gt;modifyandSetBreakRadius.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Abort.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Abort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 122</value>
+  </data>
+  <data name="Abort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 32</value>
+  </data>
+  <data name="Abort.TabIndex" type="System.Int32, mscorlib">
+    <value>96</value>
+  </data>
+  <data name="Abort.Text" xml:space="preserve">
+    <value>BREAK BREAK BREAK                       ( Loiter,wait,RTL,Servo5 Low)</value>
+  </data>
+  <data name="Abort.ToolTip" xml:space="preserve">
+    <value>Sets SERVO5 Low and break apart via Loiter and after 5 seconds change Mode to RTL</value>
+  </data>
+  <data name="&gt;&gt;Abort.Name" xml:space="preserve">
+    <value>Abort</value>
+  </data>
+  <data name="&gt;&gt;Abort.Type" xml:space="preserve">
+    <value>MissionPlanner.Controls.MyButton, MissionPlanner.Controls, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;Abort.Parent" xml:space="preserve">
+    <value>tabActions</value>
+  </data>
+  <data name="&gt;&gt;Abort.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="GroundHeading.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>

@@ -40,6 +40,7 @@
             this.quickView2 = new MissionPlanner.Controls.QuickView();
             this.quickView1 = new MissionPlanner.Controls.QuickView();
             this.tabActions = new System.Windows.Forms.TabPage();
+            this.Abort = new MissionPlanner.Controls.MyButton();
             this.GroundHeading = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.modifyandSetSlewHeadingRate = new MissionPlanner.Controls.ModifyandSet();
@@ -189,6 +190,8 @@
             this.Messagetabtimer = new System.Windows.Forms.Timer(this.components);
             this.bindingSourceStatusTab = new System.Windows.Forms.BindingSource(this.components);
             this.setHomeHereToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.modifyandSetBreakDelay = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSetBreakRadius = new MissionPlanner.Controls.ModifyandSet();
             this.modifyandSetSlewHeadingRate = new MissionPlanner.Controls.ModifyandSet();
             this.modifyandSetSlewAltRate = new MissionPlanner.Controls.ModifyandSet();
             this.modifyandSetSlewSpeedRate = new MissionPlanner.Controls.ModifyandSet();
@@ -624,6 +627,9 @@
             // 
             // tabActions
             // 
+            this.tabActions.Controls.Add(this.modifyandSetBreakDelay);
+            this.tabActions.Controls.Add(this.modifyandSetBreakRadius);
+            this.tabActions.Controls.Add(this.Abort);
             this.tabActions.Controls.Add(this.GroundHeading);
             this.tabActions.Controls.Add(this.label7);
             this.tabActions.Controls.Add(this.modifyandSetSlewHeadingRate);
@@ -657,6 +663,22 @@
             resources.ApplyResources(this.tabActions, "tabActions");
             this.tabActions.Name = "tabActions";
             this.tabActions.UseVisualStyleBackColor = true;
+            // 
+            // Abort
+            // 
+            this.Abort.BackColor = System.Drawing.Color.Crimson;
+            this.Abort.BGGradBot = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.Abort.BGGradTop = System.Drawing.Color.Red;
+            this.Abort.ColorMouseDown = System.Drawing.Color.Empty;
+            this.Abort.ColorMouseOver = System.Drawing.Color.Empty;
+            this.Abort.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.Abort, "Abort");
+            this.Abort.Name = "Abort";
+            this.Abort.Outline = System.Drawing.Color.Maroon;
+            this.Abort.TextColor = System.Drawing.Color.Yellow;
+            this.toolTip1.SetToolTip(this.Abort, resources.GetString("Abort.ToolTip"));
+            this.Abort.UseVisualStyleBackColor = false;
+            this.Abort.Click += new System.EventHandler(this.Abort_Click);
             // 
             // GroundHeading
             // 
@@ -2508,6 +2530,52 @@
             this.bindingSourceStatusTab.DataSource = typeof(MissionPlanner.CurrentState);
             // 
             // setHomeHereToolStripMenuItem1
+            // modifyandSetBreakDelay
+            // 
+            this.modifyandSetBreakDelay.ButtonText = "Break Delay";
+            this.modifyandSetBreakDelay.ButtonVisible = true;
+            resources.ApplyResources(this.modifyandSetBreakDelay, "modifyandSetBreakDelay");
+            this.modifyandSetBreakDelay.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.modifyandSetBreakDelay.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSetBreakDelay.Name = "modifyandSetBreakDelay";
+            this.toolTip1.SetToolTip(this.modifyandSetBreakDelay, resources.GetString("modifyandSetBreakDelay.ToolTip"));
+            this.modifyandSetBreakDelay.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // modifyandSetBreakRadius
+            // 
+            this.modifyandSetBreakRadius.ButtonText = "Break Radius";
+            this.modifyandSetBreakRadius.ButtonVisible = true;
+            resources.ApplyResources(this.modifyandSetBreakRadius, "modifyandSetBreakRadius");
+            this.modifyandSetBreakRadius.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.modifyandSetBreakRadius.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            -2147483648});
+            this.modifyandSetBreakRadius.Name = "modifyandSetBreakRadius";
+            this.toolTip1.SetToolTip(this.modifyandSetBreakRadius, resources.GetString("modifyandSetBreakRadius.ToolTip"));
+            this.modifyandSetBreakRadius.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.modifyandSetBreakRadius.Load += new System.EventHandler(this.modifyandSetBreakRadius_Load);
             // 
             this.setHomeHereToolStripMenuItem1.Name = "setHomeHereToolStripMenuItem1";
             resources.ApplyResources(this.setHomeHereToolStripMenuItem1, "setHomeHereToolStripMenuItem1");
@@ -3060,5 +3128,8 @@
         private System.Windows.Forms.Label label7;
 
         private System.Windows.Forms.CheckBox GroundHeading;
+        private Controls.MyButton Abort;
+        private Controls.ModifyandSet modifyandSetBreakRadius;
+        private Controls.ModifyandSet modifyandSetBreakDelay;
     }
 }
