@@ -4760,7 +4760,7 @@ namespace MissionPlanner.GCSViews
 
         }
 
-        private void Abort_Click_DelayedEvent(object sender, EventArgs e, decimal resetafter)
+        private void Abort_Click_DelayedEvent2(object sender, EventArgs e, decimal resetafter)
         {
 
             // do same as RTL button
@@ -4807,6 +4807,22 @@ namespace MissionPlanner.GCSViews
             }
         }
 
+        private void Abort_Click_DelayedEvent1(object sender, EventArgs e, decimal resetafter)
+        {
+            // do same as Loiter button
+            try
+            {
+                ((Button)sender).Enabled = false;
+                MainV2.comPort.setMode("Loiter");
+            }
+            catch
+            {
+                CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+            }
+((Button)sender).Enabled = true;
+        }
+
+
         static void Delay(int ms, EventHandler action)
         {
             var tmp = new System.Windows.Forms.Timer { Interval = ms };
@@ -4814,16 +4830,46 @@ namespace MissionPlanner.GCSViews
             tmp.Tick += action;
             tmp.Enabled = true;
         }
-        private void Abort_Click(object sender, EventArgs e)
-        {
-            // optionally do a loiter for 5 seconds, at a defined WP_LOITER_RAD ( negative turns left, positive right), then  rtl etc
-            int HOW_LONG_DELAY = (int)modifyandSetBreakDelay.Value * 1000; //millis
-                                                                           // TODO let user configure the -100 value here in GUI somehow.
-                                                                           //set WP_LOITER_RAD to non-standard numbers? to over ride default/s ?
-            decimal prevval = modifyandSetLoiterRad.Value;
-            modifyandSetLoiterRad.Value = (int)modifyandSetBreakRadius.Value;
-                int newrad = (int)modifyandSetLoiterRad.Value;
 
+        // break SlightLeft, SlightRight, HardLeft, HardRight based on 4 different buttons and 4 different presets of data
+        private void Break_SL_Click(object sender, EventArgs e)
+        {
+            // optionally do a loiter for X seconds, at a defined WP_LOITER_RAD ( negative turns left, positive right), then  rtl etc
+            int delay = (int)modifyandSet_SL_BreakDelay.Value * 1000; //millis
+            decimal prevval = modifyandSetLoiterRad.Value;
+            modifyandSetLoiterRad.Value = (int)modifyandSet_SL_BreakRadius.Value;
+            int newrad = (int)modifyandSetLoiterRad.Value;
+            Generic_Break(sender, e,  delay, newrad, prevval);
+        }
+        private void Break_HL_Click(object sender, EventArgs e)
+        {
+            // optionally do a loiter for X seconds, at a defined WP_LOITER_RAD ( negative turns left, positive right), then  rtl etc
+            int delay = (int)modifyandSet_HL_BreakDelay.Value * 1000; //millis
+            decimal prevval = modifyandSetLoiterRad.Value;
+            modifyandSetLoiterRad.Value = (int)modifyandSet_HL_BreakRadius.Value;
+            int newrad = (int)modifyandSetLoiterRad.Value;
+            Generic_Break(sender, e, delay, newrad, prevval);
+        }
+        private void Break_SR_Click(object sender, EventArgs e)
+        {
+            // optionally do a loiter for X seconds, at a defined WP_LOITER_RAD ( negative turns left, positive right), then  rtl etc
+            int delay = (int)modifyandSet_SR_BreakDelay.Value * 1000; //millis
+            decimal prevval = modifyandSetLoiterRad.Value;
+            modifyandSetLoiterRad.Value = (int)modifyandSet_SR_BreakRadius.Value;
+            int newrad = (int)modifyandSetLoiterRad.Value;
+            Generic_Break(sender, e, delay, newrad, prevval);
+        }
+        private void Break_HR_Click(object sender, EventArgs e)
+        {
+            // optionally do a loiter for X seconds, at a defined WP_LOITER_RAD ( negative turns left, positive right), then  rtl etc
+            int delay = (int)modifyandSet_HR_BreakDelay.Value * 1000; //millis
+            decimal prevval = modifyandSetLoiterRad.Value;
+            modifyandSetLoiterRad.Value = (int)modifyandSet_HR_BreakRadius.Value;
+            int newrad = (int)modifyandSetLoiterRad.Value;
+            Generic_Break(sender, e, delay, newrad, prevval);
+        }
+        private void Generic_Break(object sender, EventArgs e, int delay, int newrad, decimal prevval)
+        {
                 try
                 {
                     MainV2.comPort.setParam(new[] { "LOITER_RAD", "WP_LOITER_RAD" }, newrad / CurrentState.multiplierdist);
@@ -4833,20 +4879,12 @@ namespace MissionPlanner.GCSViews
                     CustomMessageBox.Show(Strings.ErrorCommunicating, Strings.ERROR);
                 }
 
-            // do same as Loiter button
-                try
-                {
-                    ((Button)sender).Enabled = false;
-                    MainV2.comPort.setMode("Loiter");
-                }
-                catch
-                {
-                    CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
-                }
-                ((Button)sender).Enabled = true;
+            // delay 1/2 a sec for the LOITER_RAD to be written, then attempt to LOITER
+            Delay(500, (o, a) => Abort_Click_DelayedEvent1(sender, e, prevval));
 
-            // setup a delayed event to do the next stage in a few seconds.
-            Delay(HOW_LONG_DELAY, (o, a) => Abort_Click_DelayedEvent(sender, e, prevval));
+
+            // setup a further delayed event to do the next stage in a few seconds., which is the RTL and CH5 low
+            Delay(delay, (o, a) => Abort_Click_DelayedEvent2(sender, e, prevval));
 
 
         }
@@ -4857,6 +4895,11 @@ namespace MissionPlanner.GCSViews
         }
 
         private void modifyandSetBreakRadius_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
         {
 
         }
