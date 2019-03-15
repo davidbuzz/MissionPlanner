@@ -23,6 +23,13 @@ namespace MissionPlanner.Controls
         }
 
         [System.ComponentModel.Browsable(true)]
+        public Boolean ButtonVisible
+        {
+            get { return Button.Visible; }
+            set { Button.Visible = value; }
+        }
+
+        [System.ComponentModel.Browsable(true)]
         public Decimal Value
         {
             get { return NumericUpDown.Value; }

@@ -40,7 +40,24 @@
             this.quickView2 = new MissionPlanner.Controls.QuickView();
             this.quickView1 = new MissionPlanner.Controls.QuickView();
             this.tabActions = new System.Windows.Forms.TabPage();
-            this.modifyandSetLoiterRad = new MissionPlanner.Controls.ModifyandSet();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.modifyandSet_HR_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSet_HR_BreakRadius = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSet_SR_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSet_SR_BreakRadius = new MissionPlanner.Controls.ModifyandSet();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.modifyandSet_HL_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSet_HL_BreakRadius = new MissionPlanner.Controls.ModifyandSet();
+            this.Break_HR = new MissionPlanner.Controls.MyButton();
+            this.Break_SR = new MissionPlanner.Controls.MyButton();
+            this.Break_HL = new MissionPlanner.Controls.MyButton();
+            this.modifyandSet_SL_BreakDelay = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSet_SL_BreakRadius = new MissionPlanner.Controls.ModifyandSet();
+            this.Break_SL = new MissionPlanner.Controls.MyButton();
+            this.GroundHeading = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.BUT_abortland = new MissionPlanner.Controls.MyButton();
             this.BUT_resumemis = new MissionPlanner.Controls.MyButton();
             this.CMB_mountmode = new System.Windows.Forms.ComboBox();
@@ -60,7 +77,14 @@
             this.BUT_RAWSensor = new MissionPlanner.Controls.MyButton();
             this.BUTrestartmission = new MissionPlanner.Controls.MyButton();
             this.BUTactiondo = new MissionPlanner.Controls.MyButton();
+            this.modifyandSetSlewHeadingRate = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSetSlewAltRate = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSetSlewSpeedRate = new MissionPlanner.Controls.ModifyandSet();
             this.modifyandSetSpeed = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSetSlewHeading = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSetSlewAlt = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSetSlewSpeed = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSetLoiterRad = new MissionPlanner.Controls.ModifyandSet();
             this.modifyandSetAlt = new MissionPlanner.Controls.ModifyandSet();
             this.tabActionsSimple = new System.Windows.Forms.TabPage();
             this.myButton1 = new MissionPlanner.Controls.MyButton();
@@ -592,11 +616,29 @@
             this.quickView1.numberColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(151)))), ((int)(((byte)(248)))));
             this.quickView1.numberformat = "0.00";
             this.toolTip1.SetToolTip(this.quickView1, resources.GetString("quickView1.ToolTip"));
+            this.quickView1.Load += new System.EventHandler(this.quickView1_Load);
             this.quickView1.DoubleClick += new System.EventHandler(this.quickView_DoubleClick);
             // 
             // tabActions
             // 
-            this.tabActions.Controls.Add(this.modifyandSetLoiterRad);
+            this.tabActions.Controls.Add(this.label10);
+            this.tabActions.Controls.Add(this.label11);
+            this.tabActions.Controls.Add(this.modifyandSet_HR_BreakDelay);
+            this.tabActions.Controls.Add(this.modifyandSet_HR_BreakRadius);
+            this.tabActions.Controls.Add(this.modifyandSet_SR_BreakDelay);
+            this.tabActions.Controls.Add(this.modifyandSet_SR_BreakRadius);
+            this.tabActions.Controls.Add(this.label9);
+            this.tabActions.Controls.Add(this.label8);
+            this.tabActions.Controls.Add(this.modifyandSet_HL_BreakDelay);
+            this.tabActions.Controls.Add(this.modifyandSet_HL_BreakRadius);
+            this.tabActions.Controls.Add(this.Break_HR);
+            this.tabActions.Controls.Add(this.Break_SR);
+            this.tabActions.Controls.Add(this.Break_HL);
+            this.tabActions.Controls.Add(this.modifyandSet_SL_BreakDelay);
+            this.tabActions.Controls.Add(this.modifyandSet_SL_BreakRadius);
+            this.tabActions.Controls.Add(this.Break_SL);
+            this.tabActions.Controls.Add(this.GroundHeading);
+            this.tabActions.Controls.Add(this.label7);
             this.tabActions.Controls.Add(this.BUT_abortland);
             this.tabActions.Controls.Add(this.BUT_resumemis);
             this.tabActions.Controls.Add(this.CMB_mountmode);
@@ -616,33 +658,301 @@
             this.tabActions.Controls.Add(this.BUT_RAWSensor);
             this.tabActions.Controls.Add(this.BUTrestartmission);
             this.tabActions.Controls.Add(this.BUTactiondo);
+            this.tabActions.Controls.Add(this.modifyandSetSlewHeadingRate);
+            this.tabActions.Controls.Add(this.modifyandSetSlewAltRate);
+            this.tabActions.Controls.Add(this.modifyandSetSlewSpeedRate);
             this.tabActions.Controls.Add(this.modifyandSetSpeed);
+            this.tabActions.Controls.Add(this.modifyandSetSlewHeading);
+            this.tabActions.Controls.Add(this.modifyandSetSlewAlt);
+            this.tabActions.Controls.Add(this.modifyandSetSlewSpeed);
+            this.tabActions.Controls.Add(this.modifyandSetLoiterRad);
             this.tabActions.Controls.Add(this.modifyandSetAlt);
             resources.ApplyResources(this.tabActions, "tabActions");
             this.tabActions.Name = "tabActions";
             this.tabActions.UseVisualStyleBackColor = true;
             // 
-            // modifyandSetLoiterRad
+            // label10
             // 
-            this.modifyandSetLoiterRad.ButtonText = "Set Loiter Rad";
-            resources.ApplyResources(this.modifyandSetLoiterRad, "modifyandSetLoiterRad");
-            this.modifyandSetLoiterRad.Maximum = new decimal(new int[] {
-            10000,
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            // 
+            // modifyandSet_HR_BreakDelay
+            // 
+            this.modifyandSet_HR_BreakDelay.ButtonText = "Break Delay";
+            this.modifyandSet_HR_BreakDelay.ButtonVisible = true;
+            resources.ApplyResources(this.modifyandSet_HR_BreakDelay, "modifyandSet_HR_BreakDelay");
+            this.modifyandSet_HR_BreakDelay.Maximum = new decimal(new int[] {
+            30,
             0,
             0,
             0});
-            this.modifyandSetLoiterRad.Minimum = new decimal(new int[] {
-            10000,
+            this.modifyandSet_HR_BreakDelay.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSet_HR_BreakDelay.Name = "modifyandSet_HR_BreakDelay";
+            this.toolTip1.SetToolTip(this.modifyandSet_HR_BreakDelay, resources.GetString("modifyandSet_HR_BreakDelay.ToolTip"));
+            this.modifyandSet_HR_BreakDelay.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // modifyandSet_HR_BreakRadius
+            // 
+            this.modifyandSet_HR_BreakRadius.ButtonText = "Break Radius";
+            this.modifyandSet_HR_BreakRadius.ButtonVisible = true;
+            resources.ApplyResources(this.modifyandSet_HR_BreakRadius, "modifyandSet_HR_BreakRadius");
+            this.modifyandSet_HR_BreakRadius.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.modifyandSet_HR_BreakRadius.Minimum = new decimal(new int[] {
+            200,
             0,
             0,
             -2147483648});
-            this.modifyandSetLoiterRad.Name = "modifyandSetLoiterRad";
-            this.modifyandSetLoiterRad.Value = new decimal(new int[] {
+            this.modifyandSet_HR_BreakRadius.Name = "modifyandSet_HR_BreakRadius";
+            this.toolTip1.SetToolTip(this.modifyandSet_HR_BreakRadius, resources.GetString("modifyandSet_HR_BreakRadius.ToolTip"));
+            this.modifyandSet_HR_BreakRadius.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            // 
+            // modifyandSet_SR_BreakDelay
+            // 
+            this.modifyandSet_SR_BreakDelay.ButtonText = "Break Delay";
+            this.modifyandSet_SR_BreakDelay.ButtonVisible = true;
+            resources.ApplyResources(this.modifyandSet_SR_BreakDelay, "modifyandSet_SR_BreakDelay");
+            this.modifyandSet_SR_BreakDelay.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.modifyandSet_SR_BreakDelay.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSet_SR_BreakDelay.Name = "modifyandSet_SR_BreakDelay";
+            this.toolTip1.SetToolTip(this.modifyandSet_SR_BreakDelay, resources.GetString("modifyandSet_SR_BreakDelay.ToolTip"));
+            this.modifyandSet_SR_BreakDelay.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // modifyandSet_SR_BreakRadius
+            // 
+            this.modifyandSet_SR_BreakRadius.ButtonText = "Break Radius";
+            this.modifyandSet_SR_BreakRadius.ButtonVisible = true;
+            resources.ApplyResources(this.modifyandSet_SR_BreakRadius, "modifyandSet_SR_BreakRadius");
+            this.modifyandSet_SR_BreakRadius.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.modifyandSet_SR_BreakRadius.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            -2147483648});
+            this.modifyandSet_SR_BreakRadius.Name = "modifyandSet_SR_BreakRadius";
+            this.toolTip1.SetToolTip(this.modifyandSet_SR_BreakRadius, resources.GetString("modifyandSet_SR_BreakRadius.ToolTip"));
+            this.modifyandSet_SR_BreakRadius.Value = new decimal(new int[] {
             100,
             0,
             0,
             0});
-            this.modifyandSetLoiterRad.Click += new System.EventHandler(this.modifyandSetLoiterRad_Click);
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
+            // 
+            // modifyandSet_HL_BreakDelay
+            // 
+            this.modifyandSet_HL_BreakDelay.ButtonText = "Break Delay";
+            this.modifyandSet_HL_BreakDelay.ButtonVisible = true;
+            resources.ApplyResources(this.modifyandSet_HL_BreakDelay, "modifyandSet_HL_BreakDelay");
+            this.modifyandSet_HL_BreakDelay.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.modifyandSet_HL_BreakDelay.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSet_HL_BreakDelay.Name = "modifyandSet_HL_BreakDelay";
+            this.toolTip1.SetToolTip(this.modifyandSet_HL_BreakDelay, resources.GetString("modifyandSet_HL_BreakDelay.ToolTip"));
+            this.modifyandSet_HL_BreakDelay.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // modifyandSet_HL_BreakRadius
+            // 
+            this.modifyandSet_HL_BreakRadius.ButtonText = "Break Radius";
+            this.modifyandSet_HL_BreakRadius.ButtonVisible = true;
+            resources.ApplyResources(this.modifyandSet_HL_BreakRadius, "modifyandSet_HL_BreakRadius");
+            this.modifyandSet_HL_BreakRadius.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.modifyandSet_HL_BreakRadius.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            -2147483648});
+            this.modifyandSet_HL_BreakRadius.Name = "modifyandSet_HL_BreakRadius";
+            this.toolTip1.SetToolTip(this.modifyandSet_HL_BreakRadius, resources.GetString("modifyandSet_HL_BreakRadius.ToolTip"));
+            this.modifyandSet_HL_BreakRadius.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            -2147483648});
+            // 
+            // Break_HR
+            // 
+            this.Break_HR.BackColor = System.Drawing.Color.Crimson;
+            this.Break_HR.BGGradBot = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.Break_HR.BGGradTop = System.Drawing.Color.Red;
+            this.Break_HR.ColorMouseDown = System.Drawing.Color.Empty;
+            this.Break_HR.ColorMouseOver = System.Drawing.Color.Empty;
+            this.Break_HR.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.Break_HR, "Break_HR");
+            this.Break_HR.Name = "Break_HR";
+            this.Break_HR.Outline = System.Drawing.Color.Maroon;
+            this.Break_HR.TextColor = System.Drawing.Color.Yellow;
+            this.toolTip1.SetToolTip(this.Break_HR, resources.GetString("Break_HR.ToolTip"));
+            this.Break_HR.UseVisualStyleBackColor = false;
+            this.Break_HR.Click += new System.EventHandler(this.Break_HR_Click);
+            // 
+            // Break_SR
+            // 
+            this.Break_SR.BackColor = System.Drawing.Color.Crimson;
+            this.Break_SR.BGGradBot = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.Break_SR.BGGradTop = System.Drawing.Color.Red;
+            this.Break_SR.ColorMouseDown = System.Drawing.Color.Empty;
+            this.Break_SR.ColorMouseOver = System.Drawing.Color.Empty;
+            this.Break_SR.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.Break_SR, "Break_SR");
+            this.Break_SR.Name = "Break_SR";
+            this.Break_SR.Outline = System.Drawing.Color.Maroon;
+            this.Break_SR.TextColor = System.Drawing.Color.Yellow;
+            this.toolTip1.SetToolTip(this.Break_SR, resources.GetString("Break_SR.ToolTip"));
+            this.Break_SR.UseVisualStyleBackColor = false;
+            this.Break_SR.Click += new System.EventHandler(this.Break_SR_Click);
+            // 
+            // Break_HL
+            // 
+            this.Break_HL.BackColor = System.Drawing.Color.Crimson;
+            this.Break_HL.BGGradBot = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.Break_HL.BGGradTop = System.Drawing.Color.Red;
+            this.Break_HL.ColorMouseDown = System.Drawing.Color.Empty;
+            this.Break_HL.ColorMouseOver = System.Drawing.Color.Empty;
+            this.Break_HL.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.Break_HL, "Break_HL");
+            this.Break_HL.Name = "Break_HL";
+            this.Break_HL.Outline = System.Drawing.Color.Maroon;
+            this.Break_HL.TextColor = System.Drawing.Color.Yellow;
+            this.toolTip1.SetToolTip(this.Break_HL, resources.GetString("Break_HL.ToolTip"));
+            this.Break_HL.UseVisualStyleBackColor = false;
+            this.Break_HL.Click += new System.EventHandler(this.Break_HL_Click);
+            // 
+            // modifyandSet_SL_BreakDelay
+            // 
+            this.modifyandSet_SL_BreakDelay.ButtonText = "Break Delay";
+            this.modifyandSet_SL_BreakDelay.ButtonVisible = true;
+            resources.ApplyResources(this.modifyandSet_SL_BreakDelay, "modifyandSet_SL_BreakDelay");
+            this.modifyandSet_SL_BreakDelay.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.modifyandSet_SL_BreakDelay.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSet_SL_BreakDelay.Name = "modifyandSet_SL_BreakDelay";
+            this.toolTip1.SetToolTip(this.modifyandSet_SL_BreakDelay, resources.GetString("modifyandSet_SL_BreakDelay.ToolTip"));
+            this.modifyandSet_SL_BreakDelay.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // modifyandSet_SL_BreakRadius
+            // 
+            this.modifyandSet_SL_BreakRadius.ButtonText = "Break Radius";
+            this.modifyandSet_SL_BreakRadius.ButtonVisible = true;
+            resources.ApplyResources(this.modifyandSet_SL_BreakRadius, "modifyandSet_SL_BreakRadius");
+            this.modifyandSet_SL_BreakRadius.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.modifyandSet_SL_BreakRadius.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            -2147483648});
+            this.modifyandSet_SL_BreakRadius.Name = "modifyandSet_SL_BreakRadius";
+            this.toolTip1.SetToolTip(this.modifyandSet_SL_BreakRadius, resources.GetString("modifyandSet_SL_BreakRadius.ToolTip"));
+            this.modifyandSet_SL_BreakRadius.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.modifyandSet_SL_BreakRadius.Load += new System.EventHandler(this.modifyandSetBreakRadius_Load);
+            // 
+            // Break_SL
+            // 
+            this.Break_SL.BackColor = System.Drawing.Color.Crimson;
+            this.Break_SL.BGGradBot = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.Break_SL.BGGradTop = System.Drawing.Color.Red;
+            this.Break_SL.ColorMouseDown = System.Drawing.Color.Empty;
+            this.Break_SL.ColorMouseOver = System.Drawing.Color.Empty;
+            this.Break_SL.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.Break_SL, "Break_SL");
+            this.Break_SL.Name = "Break_SL";
+            this.Break_SL.Outline = System.Drawing.Color.Maroon;
+            this.Break_SL.TextColor = System.Drawing.Color.Yellow;
+            this.toolTip1.SetToolTip(this.Break_SL, resources.GetString("Break_SL.ToolTip"));
+            this.Break_SL.UseVisualStyleBackColor = false;
+            this.Break_SL.Click += new System.EventHandler(this.Break_SL_Click);
+            // 
+            // GroundHeading
+            // 
+            resources.ApplyResources(this.GroundHeading, "GroundHeading");
+            this.GroundHeading.Checked = true;
+            this.GroundHeading.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.GroundHeading.Name = "GroundHeading";
+            this.GroundHeading.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
             // 
             // BUT_abortland
             // 
@@ -841,9 +1151,76 @@
             this.BUTactiondo.UseVisualStyleBackColor = true;
             this.BUTactiondo.Click += new System.EventHandler(this.BUTactiondo_Click);
             // 
+            // modifyandSetSlewHeadingRate
+            // 
+            this.modifyandSetSlewHeadingRate.ButtonText = "Slew to Heading Rate";
+            this.modifyandSetSlewHeadingRate.ButtonVisible = false;
+            resources.ApplyResources(this.modifyandSetSlewHeadingRate, "modifyandSetSlewHeadingRate");
+            this.modifyandSetSlewHeadingRate.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewHeadingRate.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewHeadingRate.Name = "modifyandSetSlewHeadingRate";
+            this.modifyandSetSlewHeadingRate.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // modifyandSetSlewAltRate
+            // 
+            this.modifyandSetSlewAltRate.ButtonText = "Slew to Alt Rate";
+            this.modifyandSetSlewAltRate.ButtonVisible = false;
+            resources.ApplyResources(this.modifyandSetSlewAltRate, "modifyandSetSlewAltRate");
+            this.modifyandSetSlewAltRate.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewAltRate.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewAltRate.Name = "modifyandSetSlewAltRate";
+            this.modifyandSetSlewAltRate.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // modifyandSetSlewSpeedRate
+            // 
+            this.modifyandSetSlewSpeedRate.ButtonText = "Slew to Speed Rate";
+            this.modifyandSetSlewSpeedRate.ButtonVisible = false;
+            resources.ApplyResources(this.modifyandSetSlewSpeedRate, "modifyandSetSlewSpeedRate");
+            this.modifyandSetSlewSpeedRate.Maximum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewSpeedRate.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewSpeedRate.Name = "modifyandSetSlewSpeedRate";
+            this.modifyandSetSlewSpeedRate.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
             // modifyandSetSpeed
             // 
             this.modifyandSetSpeed.ButtonText = "Change Speed";
+            this.modifyandSetSpeed.ButtonVisible = true;
             resources.ApplyResources(this.modifyandSetSpeed, "modifyandSetSpeed");
             this.modifyandSetSpeed.Maximum = new decimal(new int[] {
             1000,
@@ -864,9 +1241,105 @@
             this.modifyandSetSpeed.Click += new System.EventHandler(this.modifyandSetSpeed_Click);
             this.modifyandSetSpeed.ParentChanged += new System.EventHandler(this.modifyandSetSpeed_ParentChanged);
             // 
+            // modifyandSetSlewHeading
+            // 
+            this.modifyandSetSlewHeading.ButtonText = "Slew to Heading";
+            this.modifyandSetSlewHeading.ButtonVisible = true;
+            resources.ApplyResources(this.modifyandSetSlewHeading, "modifyandSetSlewHeading");
+            this.modifyandSetSlewHeading.Maximum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewHeading.Minimum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            -2147483648});
+            this.modifyandSetSlewHeading.Name = "modifyandSetSlewHeading";
+            this.modifyandSetSlewHeading.Value = new decimal(new int[] {
+            270,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewHeading.Click += new System.EventHandler(this.modifyandSetSlewHeading_Click);
+            this.modifyandSetSlewHeading.Load += new System.EventHandler(this.modifyandSetSlewHeading_Load);
+            // 
+            // modifyandSetSlewAlt
+            // 
+            this.modifyandSetSlewAlt.ButtonText = "Slew to Alt";
+            this.modifyandSetSlewAlt.ButtonVisible = true;
+            resources.ApplyResources(this.modifyandSetSlewAlt, "modifyandSetSlewAlt");
+            this.modifyandSetSlewAlt.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewAlt.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewAlt.Name = "modifyandSetSlewAlt";
+            this.modifyandSetSlewAlt.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewAlt.Click += new System.EventHandler(this.modifyandSetSlewAlt_Click);
+            this.modifyandSetSlewAlt.Load += new System.EventHandler(this.modifyandSetSlewAlt_Load);
+            // 
+            // modifyandSetSlewSpeed
+            // 
+            this.modifyandSetSlewSpeed.ButtonText = "Slew to Speed";
+            this.modifyandSetSlewSpeed.ButtonVisible = true;
+            resources.ApplyResources(this.modifyandSetSlewSpeed, "modifyandSetSlewSpeed");
+            this.modifyandSetSlewSpeed.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewSpeed.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewSpeed.Name = "modifyandSetSlewSpeed";
+            this.modifyandSetSlewSpeed.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.modifyandSetSlewSpeed.Click += new System.EventHandler(this.modifyandSetSlewSpeed_Click);
+            this.modifyandSetSlewSpeed.Load += new System.EventHandler(this.modifyandSetSlewSpeed_Load);
+            // 
+            // modifyandSetLoiterRad
+            // 
+            this.modifyandSetLoiterRad.ButtonText = "Set Loiter Rad";
+            this.modifyandSetLoiterRad.ButtonVisible = true;
+            resources.ApplyResources(this.modifyandSetLoiterRad, "modifyandSetLoiterRad");
+            this.modifyandSetLoiterRad.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.modifyandSetLoiterRad.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            -2147483648});
+            this.modifyandSetLoiterRad.Name = "modifyandSetLoiterRad";
+            this.modifyandSetLoiterRad.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.modifyandSetLoiterRad.Click += new System.EventHandler(this.modifyandSetLoiterRad_Click);
+            // 
             // modifyandSetAlt
             // 
             this.modifyandSetAlt.ButtonText = "Change Alt";
+            this.modifyandSetAlt.ButtonVisible = true;
             resources.ApplyResources(this.modifyandSetAlt, "modifyandSetAlt");
             this.modifyandSetAlt.Maximum = new decimal(new int[] {
             1000,
@@ -1432,6 +1905,7 @@
             resources.ApplyResources(this.servoOptions1, "servoOptions1");
             this.servoOptions1.Name = "servoOptions1";
             this.servoOptions1.thisservo = 5;
+            this.servoOptions1.Load += new System.EventHandler(this.servoOptions1_Load);
             // 
             // servoOptions2
             // 
@@ -2347,6 +2821,7 @@
             this.contextMenuStripQuickView.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceQuickTab)).EndInit();
             this.tabActions.ResumeLayout(false);
+            this.tabActions.PerformLayout();
             this.tabActionsSimple.ResumeLayout(false);
             this.tabPagePreFlight.ResumeLayout(false);
             this.tabGauges.ResumeLayout(false);
@@ -2565,6 +3040,34 @@
         private System.Windows.Forms.GroupBox groupBoxYaw;
         private System.Windows.Forms.GroupBox groupBoxPitch;
         private Controls.MyButton BUT_PayloadFolder;
+
         private System.Windows.Forms.ToolStripMenuItem setHomeHereToolStripMenuItem1;
+
+		
+        private Controls.ModifyandSet modifyandSetSlewHeading;
+        private Controls.ModifyandSet modifyandSetSlewAlt;
+        private Controls.ModifyandSet modifyandSetSlewSpeed;
+        private Controls.ModifyandSet modifyandSetSlewHeadingRate;
+        private Controls.ModifyandSet modifyandSetSlewAltRate;
+        private Controls.ModifyandSet modifyandSetSlewSpeedRate;
+        private System.Windows.Forms.Label label7;
+
+        private System.Windows.Forms.CheckBox GroundHeading;
+        private Controls.MyButton Break_SL;
+        private Controls.ModifyandSet modifyandSet_SL_BreakRadius;
+        private Controls.ModifyandSet modifyandSet_SL_BreakDelay;
+        private System.Windows.Forms.Label label8;
+        private Controls.ModifyandSet modifyandSet_HL_BreakDelay;
+        private Controls.ModifyandSet modifyandSet_HL_BreakRadius;
+        private Controls.MyButton Break_HR;
+        private Controls.MyButton Break_SR;
+        private Controls.MyButton Break_HL;
+        private Controls.ModifyandSet modifyandSet_HR_BreakDelay;
+        private Controls.ModifyandSet modifyandSet_HR_BreakRadius;
+        private Controls.ModifyandSet modifyandSet_SR_BreakDelay;
+        private Controls.ModifyandSet modifyandSet_SR_BreakRadius;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
     }
 }
