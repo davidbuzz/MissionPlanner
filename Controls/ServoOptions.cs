@@ -3,38 +3,43 @@ using System.Drawing;
 using System.Windows.Forms;
 using MissionPlanner.Utilities;
 
+
 namespace MissionPlanner.Controls
 {
     public partial class ServoOptions : UserControl
     {
-        // start at 5 increment each instance
-        static int servo = 5;
 
-        public int thisservo { get; set; }
+        private static System.Collections.Generic.List<ServoOptions> OptionsList = new System.Collections.Generic.List<ServoOptions>();
+
+        [System.ComponentModel.Browsable(true)]
+        public String ChannValue
+        {
+            get { return TXT_rcchannel.Text; }
+            set { TXT_rcchannel.Text = value; }
+        }
 
         public ServoOptions()
         {
             InitializeComponent();
 
-            thisservo = servo;
-
-            TXT_rcchannel.Text = thisservo.ToString();
-
             loadSettings();
 
-            servo++;
-
             TXT_rcchannel.BackColor = Color.Gray;
+
+            // store list of the controls in the Class Static private that is accessable to all instances.
+            //.Contains(i);
+            ServoOptions.OptionsList.Add(this);
+
         }
 
         void loadSettings()
         {
-            string desc = Settings.Instance["Servo" + thisservo + "_desc"];
-            string low = Settings.Instance["Servo" + thisservo + "_low"];
-            string high = Settings.Instance["Servo" + thisservo + "_high"];
+            string desc = Settings.Instance["Servo" + ChannValue + "_desc"];
+            string low = Settings.Instance["Servo" + ChannValue + "_low"];
+            string high = Settings.Instance["Servo" + ChannValue + "_high"];
 
-            string highdesc = Settings.Instance["Servo" + thisservo + "_highdesc"];
-            string lowdesc = Settings.Instance["Servo" + thisservo + "_lowdesc"];
+            string highdesc = Settings.Instance["Servo" + ChannValue + "_highdesc"];
+            string lowdesc = Settings.Instance["Servo" + ChannValue + "_lowdesc"];
 
             if (!string.IsNullOrEmpty(low))
             {
@@ -44,11 +49,6 @@ namespace MissionPlanner.Controls
             if (!string.IsNullOrEmpty(high))
             {
                 TXT_pwm_high.Text = high;
-            }
-
-            if (!string.IsNullOrEmpty(desc))
-            {
-                TXT_rcchannel.Text = desc;
             }
 
             if (!string.IsNullOrEmpty(highdesc))
@@ -64,41 +64,76 @@ namespace MissionPlanner.Controls
 
         private void BUT_Low_Click(object sender, EventArgs e)
         {
+            String channum = this.ChannValue; //"5"
+
+            // first we act on the current button that hte user pressed.
+            bool Error = false;
+
             try
             {
-                if (MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, thisservo, int.Parse(TXT_pwm_low.Text), 0, 0,
-                    0, 0, 0))
+                int x = Int32.Parse(TXT_rcchannel.Text);
+                if (MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, x, int.Parse(TXT_pwm_low.Text), 0, 0, 0, 0, 0))
                 {
                     TXT_rcchannel.BackColor = Color.Red;
                 }
                 else
                 {
                     CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+                    Error = true;
                 }
             }
             catch (Exception ex)
             {
                 CustomMessageBox.Show(Strings.CommandFailed + ex.ToString(), Strings.ERROR);
+                Error = true;
+            }
+            // then we act on any other button in the Set with the same name to keep their state matched up.
+            if ( Error == false) { 
+                foreach (var so in ServoOptions.OptionsList)
+                {
+                    if ( so.ChannValue == ChannValue ) {  
+                        so.TXT_rcchannel.BackColor =  Color.Red;
+                    }
+                }
             }
         }
 
         private void BUT_High_Click(object sender, EventArgs e)
         {
+            String channum = this.ChannValue; //"5"
+
+            // first we act on the current button that hte user pressed.
+            bool Error = false;
+
             try
             {
-                if (MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, thisservo, int.Parse(TXT_pwm_high.Text), 0, 0,
-                    0, 0, 0))
+                int x = Int32.Parse(TXT_rcchannel.Text);
+
+                if (MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, x, int.Parse(TXT_pwm_high.Text), 0, 0, 0, 0, 0))
                 {
                     TXT_rcchannel.BackColor = Color.Green;
                 }
                 else
                 {
                     CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+                    Error = true;
                 }
             }
             catch (Exception ex)
             {
                 CustomMessageBox.Show(Strings.CommandFailed + ex.ToString(), Strings.ERROR);
+                Error = true;
+            }
+
+            // then we act on any other button in the Set with the same name to keep their state matched up.
+            if (Error == false)
+            {
+                foreach (var so in ServoOptions.OptionsList)
+                {
+                    if ( so.ChannValue == ChannValue ) {  
+                        so.TXT_rcchannel.BackColor = Color.Green;
+                    }
+                }
             }
         }
 
@@ -106,8 +141,9 @@ namespace MissionPlanner.Controls
         {
             try
             {
-                if (MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, thisservo, int.Parse(TXT_pwm_low.Text), 0, 0,
-                    0, 0, 0))
+                int x = Int32.Parse(TXT_rcchannel.Text);
+
+                if (MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, x, int.Parse(TXT_pwm_low.Text), 0, 0, 0, 0, 0))
                 {
                     TXT_rcchannel.BackColor = Color.Red;
                 }
@@ -115,8 +151,7 @@ namespace MissionPlanner.Controls
                 Application.DoEvents();
                 System.Threading.Thread.Sleep(200);
 
-                if (MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, thisservo, int.Parse(TXT_pwm_high.Text), 0, 0,
-                    0, 0, 0))
+                if (MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, x, int.Parse(TXT_pwm_high.Text), 0, 0, 0, 0, 0))
                 {
                     TXT_rcchannel.BackColor = Color.Green;
                 }
@@ -124,8 +159,7 @@ namespace MissionPlanner.Controls
                 Application.DoEvents();
                 System.Threading.Thread.Sleep(200);
 
-                if (MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, thisservo, int.Parse(TXT_pwm_low.Text), 0, 0,
-                    0, 0, 0))
+                if (MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, x, int.Parse(TXT_pwm_low.Text), 0, 0, 0, 0, 0))
                 {
                     TXT_rcchannel.BackColor = Color.Red;
                 }
@@ -139,34 +173,35 @@ namespace MissionPlanner.Controls
 
         private void TXT_pwm_low_TextChanged(object sender, EventArgs e)
         {
-            Settings.Instance["Servo" + thisservo + "_low"] = TXT_pwm_low.Text;
+            Settings.Instance["Servo" + ChannValue + "_low"] = TXT_pwm_low.Text;
         }
 
         private void TXT_pwm_high_TextChanged(object sender, EventArgs e)
         {
-            Settings.Instance["Servo" + thisservo + "_high"] = TXT_pwm_high.Text;
+            Settings.Instance["Servo" + ChannValue + "_high"] = TXT_pwm_high.Text;
         }
-
+        
         private void renameToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Control sourcectl = ((ContextMenuStrip) renameToolStripMenuItem.Owner).SourceControl;
 
             string desc = sourcectl.Text;
-            MissionPlanner.Controls.InputBox.Show("Description", "Enter new Description", ref desc);
-            sourcectl.Text = desc;
+            //MissionPlanner.Controls.InputBox.Show("Description", "Enter new Description", ref desc);
+            //sourcectl.Text = desc;
 
             if (sourcectl == BUT_High)
             {
-                Settings.Instance["Servo" + thisservo + "_highdesc"] = desc;
+                Settings.Instance["Servo" + ChannValue + "_highdesc"] = desc;
             }
             else if (sourcectl == BUT_Low)
             {
-                Settings.Instance["Servo" + thisservo + "_lowdesc"] = desc;
+                Settings.Instance["Servo" + ChannValue + "_lowdesc"] = desc;
             }
             else if (sourcectl == TXT_rcchannel)
             {
-                Settings.Instance["Servo" + thisservo + "_desc"] = desc;
+               // Settings.Instance["Servo" + thisservo + "_desc"] = desc;
             }
         }
+        
     }
 }

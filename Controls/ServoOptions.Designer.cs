@@ -43,29 +43,28 @@
             // 
             // BUT_Low
             // 
-            resources.ApplyResources(this.BUT_Low, "BUT_Low");
             this.BUT_Low.ContextMenuStrip = this.contextMenuStrip1;
+            resources.ApplyResources(this.BUT_Low, "BUT_Low");
             this.BUT_Low.Name = "BUT_Low";
             this.BUT_Low.UseVisualStyleBackColor = true;
             this.BUT_Low.Click += new System.EventHandler(this.BUT_Low_Click);
             // 
             // contextMenuStrip1
             // 
-            resources.ApplyResources(this.contextMenuStrip1, "contextMenuStrip1");
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.renameToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
+            resources.ApplyResources(this.contextMenuStrip1, "contextMenuStrip1");
             // 
             // renameToolStripMenuItem
             // 
-            resources.ApplyResources(this.renameToolStripMenuItem, "renameToolStripMenuItem");
             this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
-            this.renameToolStripMenuItem.Click += new System.EventHandler(this.renameToolStripMenuItem_Click);
+            resources.ApplyResources(this.renameToolStripMenuItem, "renameToolStripMenuItem");
             // 
             // BUT_High
             // 
-            resources.ApplyResources(this.BUT_High, "BUT_High");
             this.BUT_High.ContextMenuStrip = this.contextMenuStrip1;
+            resources.ApplyResources(this.BUT_High, "BUT_High");
             this.BUT_High.Name = "BUT_High";
             this.BUT_High.UseVisualStyleBackColor = true;
             this.BUT_High.Click += new System.EventHandler(this.BUT_High_Click);
@@ -91,15 +90,13 @@
             // 
             // TXT_rcchannel
             // 
-            resources.ApplyResources(this.TXT_rcchannel, "TXT_rcchannel");
             this.TXT_rcchannel.BackColor = System.Drawing.Color.Red;
             this.TXT_rcchannel.ContextMenuStrip = this.contextMenuStrip1;
+            resources.ApplyResources(this.TXT_rcchannel, "TXT_rcchannel");
             this.TXT_rcchannel.Name = "TXT_rcchannel";
             // 
             // ServoOptions
             // 
-            resources.ApplyResources(this, "$this");
-            
             this.Controls.Add(this.TXT_rcchannel);
             this.Controls.Add(this.BUT_Repeat);
             this.Controls.Add(this.TXT_pwm_high);
@@ -107,6 +104,7 @@
             this.Controls.Add(this.BUT_High);
             this.Controls.Add(this.BUT_Low);
             this.Name = "ServoOptions";
+            resources.ApplyResources(this, "$this");
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -4786,7 +4786,9 @@ namespace MissionPlanner.GCSViews
             // set Servo CH5 low, see ServoOptions.cs BUT_Low_Click() - servoOptions1  object = CH5
             try
             {
-                if (MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, servoOptions1.thisservo, int.Parse(servoOptions1.TXT_pwm_low.Text), 0, 0,
+                int x = Int32.Parse(servoOptions1.Text);
+
+                if (MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, x, int.Parse(servoOptions1.TXT_pwm_low.Text), 0, 0,
                     0, 0, 0))
                 {
                     servoOptions1.TXT_rcchannel.BackColor = Color.Red;
@@ -4897,10 +4899,6 @@ namespace MissionPlanner.GCSViews
 
         }
 
-        private void servoOptions1_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void modifyandSetBreakRadius_Load(object sender, EventArgs e)
         {
