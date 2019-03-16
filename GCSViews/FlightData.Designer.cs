@@ -19,6 +19,7 @@
             this.stopRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setMJPEGSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startCameraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stopCameraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setGStreamerSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setAspectRatioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -411,6 +412,7 @@
             this.stopRecordToolStripMenuItem,
             this.setMJPEGSourceToolStripMenuItem,
             this.startCameraToolStripMenuItem,
+            this.stopCameraToolStripMenuItem,
             this.setGStreamerSourceToolStripMenuItem});
             this.videoToolStripMenuItem.Name = "videoToolStripMenuItem";
             resources.ApplyResources(this.videoToolStripMenuItem, "videoToolStripMenuItem");
@@ -438,6 +440,12 @@
             this.startCameraToolStripMenuItem.Name = "startCameraToolStripMenuItem";
             resources.ApplyResources(this.startCameraToolStripMenuItem, "startCameraToolStripMenuItem");
             this.startCameraToolStripMenuItem.Click += new System.EventHandler(this.startCameraToolStripMenuItem_Click);
+            // 
+            // stopCameraToolStripMenuItem
+            // 
+            this.stopCameraToolStripMenuItem.Name = "stopCameraToolStripMenuItem";
+            resources.ApplyResources(this.stopCameraToolStripMenuItem, "stopCameraToolStripMenuItem");
+            this.stopCameraToolStripMenuItem.Click += new System.EventHandler(this.stopCameraToolStripMenuItem_Click);
             // 
             // setGStreamerSourceToolStripMenuItem
             // 

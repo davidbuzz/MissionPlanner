@@ -4420,6 +4420,21 @@ namespace MissionPlanner.GCSViews
             }
         }
 
+        private void stopCameraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MainV2.MONO)
+                return;
+            if (MainV2.cam == null)
+                return;
+
+            MainV2.cam.camimage += null;
+
+            MainV2.cam.Dispose();
+
+            MainV2.cam = null;
+            
+        }
+
         private void customizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (Form customForm = new Form())
