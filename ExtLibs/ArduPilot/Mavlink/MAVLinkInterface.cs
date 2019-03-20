@@ -1692,6 +1692,36 @@ Please check the following
             return doCommand(MAV.sysid, MAV.compid, actionid, p1, p2, p3, p4, p5, p6, p7, requireack, null);
         }
 
+        public bool doCommandInt( MAVLink.MAV_FRAME frame, MAV_CMD actionid,  float p1, float p2, float p3, float p4, int p5, int p6, float p7)
+        {
+
+            mavlink_command_int_t req = new mavlink_command_int_t();
+
+            req.target_system = MAV.sysid;
+            req.target_component = MAV.compid;
+
+            req.frame = (byte)frame;
+            req.command = (ushort)actionid;
+
+            req.current = 0; // TODO check if 0 or 1 needed
+            req.autocontinue = 0;   // TODO check if 0 or 1 needed
+
+            req.param1 = p1;
+            req.param2 = p2;
+            req.param3 = p3;
+            req.param4 = p4;
+            req.x = p5;
+            req.y = p6;
+            req.z = p7;
+
+            log.InfoFormat("doCommandInt cmd {0} {1} {2} {3} {4} {5} {6} {7}", actionid.ToString(), p1, p2, p3, p4, p5, p6, p7);
+
+            generatePacket((byte)MAVLINK_MSG_ID.COMMAND_INT, req, MAV.sysid, MAV.compid);
+
+            giveComport = false;
+            return true;
+        }
+
         public bool doCommand(byte sysid, byte compid, MAV_CMD actionid, float p1, float p2, float p3, float p4,
             float p5, float p6, float p7, bool requireack = true, Action uicallback = null)
         {
