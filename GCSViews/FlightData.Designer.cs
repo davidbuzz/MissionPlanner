@@ -484,7 +484,7 @@
             this.groundColorToolStripMenuItem.CheckOnClick = true;
             this.groundColorToolStripMenuItem.Name = "groundColorToolStripMenuItem";
             resources.ApplyResources(this.groundColorToolStripMenuItem, "groundColorToolStripMenuItem");
-            this.groundColorToolStripMenuItem.Click += new System.EventHandler(this.groundColorToolStripMenuItem_Click);
+           // this.groundColorToolStripMenuItem.Click += new System.EventHandler(this.groundColorToolStripMenuItem_Click);
             // 
             // bindingSourceHud
             // 

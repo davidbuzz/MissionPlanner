@@ -69,7 +69,7 @@ namespace MissionPlanner
 
         public event EventHandler CommsClose;
 
-        public byte gcssysid { get; set; } = 255;
+        public static byte gcssysid { get; set; } = 255;
 
         /// <summary>
         /// used to prevent comport access for exclusive use
@@ -3789,11 +3789,11 @@ Please check the following
 
                             var id = adsb.ICAO_address.ToString("X5");
 
-                            if (UpdateADSBPlanePosition != null)
+                           /*if (UpdateADSBPlanePosition != null)
                                 UpdateADSBPlanePosition(this, new adsb.PointLatLngAltHdg(adsb.lat / 1e7, adsb.lon / 1e7,
                                         adsb.altitude / 1000.0, adsb.heading * 0.01f, id,
                                         DateTime.Now) {CallSign = ASCIIEncoding.ASCII.GetString(adsb.callsign)}
-                                );
+                                ); */
                         }
 
                         if (msgid == (byte) MAVLINK_MSG_ID.COLLISION)

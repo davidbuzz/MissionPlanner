@@ -213,7 +213,8 @@ FlightPlanner: fix exception on exit
 GL2: update
 Joystick: clear last state
 BoardDetect: add hex bootloader
-Fix plane basic tuning throttle slewrate field DE
+Fix plane basic tuning throttle 
+rate field DE
 MAVLinkInterface: RtsEnable exception handle
 ZedGraph: remove datasource
 BoardDetect: dont lowercase bootloader id
