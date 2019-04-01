@@ -1169,6 +1169,13 @@ Please check the following
 
             do
             {
+                if (!MAV.cs.hasHeartBeat)
+                {
+                    giveComport = false;
+                    frmProgressReporter.doWorkArgs.ErrorMessage = "No heartbeat from aircraft";
+                    return MAVlist[sysid, compid].param;
+                }
+
                 if (frmProgressReporter != null && frmProgressReporter.doWorkArgs.CancelRequested)
                 {
                     frmProgressReporter.doWorkArgs.CancelAcknowledged = true;
@@ -1199,6 +1206,13 @@ Please check the following
                         // try getting individual params
                         for (short i = 0; i <= (param_total - 1); i++)
                         {
+                            if (!MAV.cs.hasHeartBeat)
+                            {
+                                giveComport = false;
+                                frmProgressReporter.doWorkArgs.ErrorMessage = "No heartbeat from aircraft";
+                                return MAVlist[sysid, compid].param;
+                            }
+
                             if (!indexsreceived.Contains(i))
                             {
                                 if (frmProgressReporter != null && frmProgressReporter.doWorkArgs.CancelRequested)

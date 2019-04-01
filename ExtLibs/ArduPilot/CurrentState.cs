@@ -1404,6 +1404,19 @@ namespace MissionPlanner
         public short rcoverridech17;// { get; set; }
         public short rcoverridech18;// { get; set; }
 
+        private DateTime lastHeartBeat = DateTime.MinValue;
+
+        /// <summary>
+        /// Returns true if has a heart beat, otherwise false.
+        /// </summary>
+        public bool hasHeartBeat
+        {
+            get
+            {
+                return (DateTime.Now - lastHeartBeat) < TimeSpan.FromSeconds(5);
+            }
+        }
+
         public Mavlink_Sensors sensors_enabled = new Mavlink_Sensors();
         public Mavlink_Sensors sensors_health = new Mavlink_Sensors();
         public Mavlink_Sensors sensors_present = new Mavlink_Sensors();
@@ -2002,6 +2015,8 @@ namespace MissionPlanner
                     mavLinkMessage = MAV.getPacket((uint)MAVLink.MAVLINK_MSG_ID.HEARTBEAT);
                     if (mavLinkMessage != null)
                     {
+                        lastHeartBeat = DateTime.Now;
+
                         var hb = mavLinkMessage.ToStructure<MAVLink.mavlink_heartbeat_t>();
 
                         if (hb.type == (byte)MAVLink.MAV_TYPE.GCS)
