@@ -4917,7 +4917,7 @@ namespace MissionPlanner.GCSViews
         private void ResetFuel_Click(object sender, EventArgs e)
         {
 
-            CustomMessageBox.Show("ResetFuel_Click not imple yet TODO: " + e.ToString());
+            //CustomMessageBox.Show("ResetFuel_Click not imple yet TODO: " + e.ToString());
             try
             {
                 // mavlink_command_int_t , see MAV_CMD_GUIDED_CHANGE_SPEED
