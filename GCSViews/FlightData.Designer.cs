@@ -209,6 +209,7 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Messagetabtimer = new System.Windows.Forms.Timer(this.components);
             this.bindingSourceStatusTab = new System.Windows.Forms.BindingSource(this.components);
+            this.ResetFuel = new MissionPlanner.Controls.MyButton();
             ((System.ComponentModel.ISupportInitialize)(this.MainH)).BeginInit();
             this.MainH.Panel1.SuspendLayout();
             this.MainH.Panel2.SuspendLayout();
@@ -638,6 +639,7 @@
             // 
             // tabActions
             // 
+            this.tabActions.Controls.Add(this.ResetFuel);
             this.tabActions.Controls.Add(this.servo5label2);
             this.tabActions.Controls.Add(this.label10);
             this.tabActions.Controls.Add(this.label11);
@@ -2823,6 +2825,17 @@
             // 
             this.bindingSourceStatusTab.DataSource = typeof(MissionPlanner.CurrentState);
             // 
+            // ResetFuel
+            // 
+            this.ResetFuel.ColorMouseDown = System.Drawing.Color.Empty;
+            this.ResetFuel.ColorMouseOver = System.Drawing.Color.Empty;
+            this.ResetFuel.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.ResetFuel, "ResetFuel");
+            this.ResetFuel.Name = "ResetFuel";
+            this.toolTip1.SetToolTip(this.ResetFuel, resources.GetString("ResetFuel.ToolTip"));
+            this.ResetFuel.UseVisualStyleBackColor = true;
+            this.ResetFuel.Click += new System.EventHandler(this.ResetFuel_Click);
+            // 
             // FlightData
             // 
             this.Controls.Add(this.MainH);
@@ -3099,5 +3112,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label servo5label2;
         private Controls.ServoOptions servoOptions1a;
+        private Controls.MyButton ResetFuel;
     }
 }

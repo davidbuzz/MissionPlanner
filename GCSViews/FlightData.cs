@@ -4914,6 +4914,30 @@ namespace MissionPlanner.GCSViews
 
         }
 
+        private void ResetFuel_Click(object sender, EventArgs e)
+        {
+
+            CustomMessageBox.Show("ResetFuel_Click not imple yet TODO: " + e.ToString());
+            try
+            {
+                // mavlink_command_int_t , see MAV_CMD_GUIDED_CHANGE_SPEED
+                MainV2.comPort.doCommandInt(
+                        MAVLink.MAV_FRAME.GLOBAL_RELATIVE_ALT,  // 
+                        MAVLink.MAV_CMD.FUEL_USED_RESET,
+                        0, // do all battery-based fuel sensors
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                        );
+            }
+            catch
+            {
+                CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+            }
+        }
     }
 }
  

@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 public partial class MAVLink
 {
-    public const string MAVLINK_BUILD_DATE = "Wed Mar 20 2019";
+    public const string MAVLINK_BUILD_DATE = "Thu May 09 2019";
     public const string MAVLINK_WIRE_PROTOCOL_VERSION = "2.0";
     public const int MAVLINK_MAX_PAYLOAD_LEN = 255;
 
@@ -1020,6 +1020,9 @@ ICAROUS_KINEMATIC_BANDS = 42001,
     	///<summary> Change to target heading, rather then location flight mode |Track type (see HEADING_TYPE enum)| Target heading (degrees)| Maximum centripetal accelearation (m/s/s)| Empty| Empty| Empty| Empty|  </summary>
         [Description("Change to target heading, rather then location flight mode")]
         GUIDED_CHANGE_HEADING=43002, 
+    	///<summary> Any Battery Module that is actually a fuel-flow sensor should zero its consumed fuel values. |BatteryId or Zero for All| Empty| Empty| Empty| Empty| Empty| Empty|  </summary>
+        [Description("Any Battery Module that is actually a fuel-flow sensor should zero its consumed fuel values.")]
+        FUEL_USED_RESET=43003, 
     
     };
     

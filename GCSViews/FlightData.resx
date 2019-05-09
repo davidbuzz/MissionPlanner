@@ -540,6 +540,36 @@
   <data name="&gt;&gt;tabQuick.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="ResetFuel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ResetFuel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>353, 96</value>
+  </data>
+  <data name="ResetFuel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 23</value>
+  </data>
+  <data name="ResetFuel.TabIndex" type="System.Int32, mscorlib">
+    <value>114</value>
+  </data>
+  <data name="ResetFuel.Text" xml:space="preserve">
+    <value>Reset Fuel Usage</value>
+  </data>
+  <data name="ResetFuel.ToolTip" xml:space="preserve">
+    <value>Do this when disconnecting taxi tank, or refueling is finished</value>
+  </data>
+  <data name="&gt;&gt;ResetFuel.Name" xml:space="preserve">
+    <value>ResetFuel</value>
+  </data>
+  <data name="&gt;&gt;ResetFuel.Type" xml:space="preserve">
+    <value>MissionPlanner.Controls.MyButton, MissionPlanner.Controls, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ResetFuel.Parent" xml:space="preserve">
+    <value>tabActions</value>
+  </data>
+  <data name="&gt;&gt;ResetFuel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="servo5label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
