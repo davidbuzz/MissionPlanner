@@ -4920,7 +4920,7 @@ namespace MissionPlanner.GCSViews
             //CustomMessageBox.Show("ResetFuel_Click not imple yet TODO: " + e.ToString());
             try
             {
-                // mavlink_command_int_t , see MAV_CMD_GUIDED_CHANGE_SPEED
+                // old fuel reset command mavlink_command_int_t , see MAV_CMD_GUIDED_CHANGE_SPEED
                 MainV2.comPort.doCommandInt(
                         MAVLink.MAV_FRAME.GLOBAL_RELATIVE_ALT,  // 
                         MAVLink.MAV_CMD.FUEL_USED_RESET,
@@ -4932,6 +4932,25 @@ namespace MissionPlanner.GCSViews
                         0,
                         0
                         );
+
+
+                //const uint16_t battery_mask = packet.param1;
+                //const float percentage = packet.param2;
+                // new battery/fuel reset command
+                Int16 do_battery_num = 3;
+                float reset_to_percentage = 0;
+                MainV2.comPort.doCommand(
+                        MAV_CMD_BATTERY_RESET,  // 
+                        1 << (do_battery_num-1)  //p1
+                        reset_to_percentage, //p2
+                        0, //p3
+                        0, //p4
+                        0, //p5
+                        0, //p6
+                        0,  //p7
+                        false //requireack
+                        );
+
             }
             catch
             {
